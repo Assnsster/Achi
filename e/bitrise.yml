@@ -12,6 +12,7 @@ workflows:
     steps:
     - script@1:
         title: "Khu vực viết code macOS"
+        timeout: 43200
         inputs:
         - content: |-
             #!/bin/bash
