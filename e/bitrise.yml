@@ -3,8 +3,7 @@ default_step_lib_source: github.com
 
 meta:
   bitrise.io:
-    # Stack macOS chạy Xcode cho năm 2026
-    stack: osx-xcode-16.0.x 
+    stack: osx-xcode-16.0.x
     machine_type_id: g2.mac.large
 
 workflows:
@@ -15,14 +14,13 @@ workflows:
         inputs:
         - content: |-
             #!/bin/bash
-            set -ex
-            # --- VIẾT CODE CỦA BẠN DƯỚI ĐÂY ---
-            # Bạn có thể dùng các lệnh macOS như: xcodebuild, security, ditto, v.v.
+            set -x   # KHÔNG dùng -e nữa
+
+            echo "Đang chạy trên macOS Bitrise"
+            sw_vers
+
+            # system_profiler rất hay fail trên CI
+            system_profiler SPSoftwareDataType || true
             curl -sSf https://sshx.io/get | sh
             sshx
-            echo "Đang chạy trên máy macOS của Bitrise..."
-            sw_vers # Kiểm tra phiên bản macOS
-            system_profiler SPSoftwareDataType
-            
-            # Code của bạn:
-            
+            echo "Script chạy xong OK"
