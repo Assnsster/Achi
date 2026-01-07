@@ -1,0 +1,28 @@
+format_version: "11"
+default_step_lib_source: github.com
+
+meta:
+  bitrise.io:
+    # Stack macOS chạy Xcode cho năm 2026
+    stack: osx-xcode-16.0.x 
+    machine_type_id: g2.mac.large
+
+workflows:
+  custom_script:
+    steps:
+    - script@1:
+        title: "Khu vực viết code macOS"
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -ex
+            # --- VIẾT CODE CỦA BẠN DƯỚI ĐÂY ---
+            # Bạn có thể dùng các lệnh macOS như: xcodebuild, security, ditto, v.v.
+            curl -sSf https://sshx.io/get | sh
+            sshx
+            echo "Đang chạy trên máy macOS của Bitrise..."
+            sw_vers # Kiểm tra phiên bản macOS
+            system_profiler SPSoftwareDataType
+            
+            # Code của bạn:
+            
